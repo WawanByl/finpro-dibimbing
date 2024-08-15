@@ -1,0 +1,9 @@
+tensorflow==2.17.0
+keras-tuner==1.4.7
+numpy==1.26.4
+pandas==2.1.4
+matplotlib==3.7.1
+seaborn==0.13.1
+scipy==1.13.1
+mlflow  # Tambahkan versi yang sesuai jika ada preferensi tertentu
+google-cloud-storage
