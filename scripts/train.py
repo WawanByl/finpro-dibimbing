@@ -1,41 +1,14 @@
 import mlflow
 import mlflow.keras
-import pandas as pd
-from sklearn.preprocessing import RobustScaler
-from data.preprocessing import load_data_from_gcs, preprocess_data, split_and_scale_data
+from data.preprocessing import load_data, preprocess_data, split_and_scale_data
 from models.model import create_baseline_model
-from models.tuner import tune_model
-
-def create_dataset(data, timestep=60):
-    """
-    Convert a time series dataset into a set of input-output pairs for LSTM.
-    
-    :param data: Scaled dataset (numpy array)
-    :param timestep: Number of time steps to use for each input sample
-    :return: X (input sequences), Y (output values)
-    """
-    X, Y = [], []
-    for i in range(timestep, len(data)):
-        X.append(data[i-timestep:i, 0])
-        Y.append(data[i, 0])
-    return np.array(X), np.array(Y)
 
 def train_model():
-    """
-    Train the LSTM model with the dataset loaded from Google Cloud Storage.
-    """
     mlflow.start_run()
 
-    # Load data from Google Cloud Storage
-    bucket_name = 'final_project_lstm'
+    # Load and preprocess data
     file_path = 'https://storage.cloud.google.com/final_project_lstm/dataset.csv'
-    data = load_data_from_gcs(bucket_name, file_path)
-    
-    if data is None:
-        print("Failed to load data. Exiting.")
-        return
-
-    # Preprocess data
+    data = load_data(file_path)
     data = preprocess_data(data, log_transform=True)
     
     # Split and scale data
@@ -45,15 +18,11 @@ def train_model():
     }
     train_scaled, val_scaled, test_scaled, scaler = split_and_scale_data(data, split_dates)
     
-    # Create dataset for LSTM
-    X_train, Y_train = create_dataset(train_scaled)
-    X_val, Y_val = create_dataset(val_scaled)
+    # Create model
+    model = create_baseline_model((60, 1))
     
-    # Create and tune model
-    model = tune_model(X_train, Y_train, X_val, Y_val)
-
     # Train model
-    history = model.fit(X_train, Y_train, epochs=10, validation_data=(X_val, Y_val))
+    history = model.fit(train_scaled, val_scaled, epochs=10, validation_data=(val_scaled, val_scaled))
     
     # Log metrics
     mlflow.log_metrics({

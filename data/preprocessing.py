@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import RobustScaler
 import io
 
-def load_data_from_gcs(bucket_name, file_path):
+def load_data_from_gcs(final_project_lstm, https://storage.cloud.google.com/final_project_lstm/dataset.csv):
     """
     Load a CSV file from Google Cloud Storage into a pandas DataFrame.
 
@@ -14,8 +14,8 @@ def load_data_from_gcs(bucket_name, file_path):
     """
     try:
         client = storage.Client()
-        bucket = client.get_bucket(final_project_lstm)
-        blob = bucket.blob(https://storage.cloud.google.com/final_project_lstm/dataset.csv)
+        bucket = client.get_bucket(bucket_name)
+        blob = bucket.blob(file_path)
         data = blob.download_as_bytes()
         df = pd.read_csv(io.BytesIO(data), index_col='Date', parse_dates=True)
         return df
