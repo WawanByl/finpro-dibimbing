@@ -7,7 +7,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 5000
+# Setel variabel lingkungan untuk port
+ENV PORT 8080
+
+# Ekspor port aplikasi
+EXPOSE 8080
 
 CMD ["python", "main.py"]
+
+
+
+
+
 
