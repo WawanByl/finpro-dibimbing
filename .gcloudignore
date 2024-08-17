@@ -1,0 +1,44 @@
+# .gcloudignore file
+
+# Ignore the .git directory (version control)
+.git/
+
+# Ignore environment configuration files
+.env
+
+# Ignore Python virtual environments
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore any local database files
+*.db
+*.sqlite
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore any log files
+*.log
+
+# Ignore temporary files and directories
+*.tmp
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Ignore all hidden files and directories (optional)
+.*
+!/.gcloudignore  # Ensure that .gcloudignore itself is not ignored
+
+# Ignore Docker-related files (optional, if not needed in the build process)
+docker-compose.yml
+docker-compose.override.yml
+.dockerignore
+
+# Ignore large data files or directories (optional, if they should not be deployed)
+data/dataset.csv
