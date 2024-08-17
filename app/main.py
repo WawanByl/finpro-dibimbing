@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import os
 from models.model import create_baseline_model
 from data.preprocessing import load_data, preprocess_data, split_and_scale_data
 
@@ -29,4 +30,6 @@ def predict():
     return jsonify(predictions.tolist())
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Menggunakan variabel lingkungan PORT jika tersedia, default ke 8080
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port, debug=True)
