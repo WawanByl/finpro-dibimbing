@@ -23,3 +23,4 @@ def create_baseline_model(input_shape):
         "loss": "mse"
     })
     return model
+

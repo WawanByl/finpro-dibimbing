@@ -1,0 +1,95 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Virtual Environment directories
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Ignore distribution and packaging directories
+build/
+dist/
+*.egg-info/
+eggs/
+parts/
+sdist/
+develop-eggs/
+.installed.cfg
+
+# Ignore PyInstaller artifacts
+*.spec
+
+# Ignore setup logs, packages, etc.
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore Jupyter Notebook data files
+*.ipynb
+
+# Ignore logs and databases
+*.log
+*.sql
+*.sqlite
+*.db
+*.sqlite3
+
+# Ignore environment variable files
+.env
+.env.*
+
+# Ignore VSCode specific files
+.vscode/
+
+# Ignore IDE/editor config files
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Dockerfile and docker-compose files
+Dockerfile
+docker-compose.yml
+
+# Ignore MLFlow artifacts and tracking
+mlruns/
+mlflow.db
+
+# Ignore temporary files created by your editor
+*~
+*.swp
+*.swo
+
+# Ignore all node_modules and npm-debug.log files
+node_modules/
+npm-debug.log
+
+# Ignore Yarn files
+yarn-error.log
+.yarn-integrity
+
+# Ignore coverage files
+.coverage
+coverage/
+.coverage.*
+.cache
+
+# Ignore build artifacts
+*.o
+*.a
+*.so
+
+# Ignore MacOS system files
+.DS_Store
+
+# Ignore Google Cloud SDK config files
+*.json
+
+# Ignore Python virtual environment files (common)
+pyvenv.cfg
